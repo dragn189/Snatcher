@@ -125,9 +125,16 @@ function Start () {
 }
 
 function Update(){
-    if(Input.GetKey(KeyCode.Q)){
+//    if(Input.GetKey(KeyCode.Q)){
+//        WO.modeDirection = 1;
+//    } else if(Input.GetKey(KeyCode.E)){
+//        WO.modeDirection = -1;
+//    } else {
+//        WO.modeDirection = 0;
+//    }
+    if(Input.GetMouseButton(1)){
         WO.modeDirection = 1;
-    } else if(Input.GetKey(KeyCode.E)){
+    } else if(Input.GetMouseButton(0)){
         WO.modeDirection = -1;
     } else {
         WO.modeDirection = 0;

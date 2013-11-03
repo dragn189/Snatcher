@@ -68,6 +68,7 @@
      <None Include="Assets\UltimateFPS\Scripts\Presets\Demo\MaceWeaponSwingRight.txt" />
      <None Include="Assets\UltimateFPS\Scripts\Presets\Demo\ModernCameraZoom.txt" />
      <None Include="Assets\UltimateFPS\Scripts\Presets\Demo\PerspOldWeapon.txt" />
+     <None Include="Assets\CAP-Models\Inorganics\James_S\FILES CORRUPTED PLEASE CONVERT TO FBX.txt" />
      <None Include="Assets\UltimateFPS\Scripts\Presets\Demo\MafiaCamera.txt" />
      <None Include="Assets\UltimateFPS\Scripts\Presets\Standard\Controller\ControllerFreeze.txt" />
      <None Include="Assets\UltimateFPS\Scripts\Presets\Demo\StompingCamera.txt" />

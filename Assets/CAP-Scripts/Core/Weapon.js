@@ -4,25 +4,76 @@ public var GM:GameManager;
 private var MouseX:float;
 private var MouseY:float;
 
+var currentRotation : Vector3 = Vector3.zero;
+var newRotation : Vector3 = Vector3.zero;
+var difference : Vector3 = Vector3.zero;
+var newOffset : Vector3 = Vector3.zero;
+
+var tempRotationSet : boolean = false;
 function Start () {
+currentRotation = GM.FO.FPSCam.transform.eulerAngles;
+newRotation = currentRotation;
 }
  
 function Update(){
 	MouseX = Input.GetAxis("Mouse X"); MouseY = Input.GetAxis("Mouse Y");
+	currentRotation = GM.FO.FPSCam.transform.eulerAngles;
+	difference = currentRotation - newRotation;
+	print(difference);
+	newRotation = currentRotation;
 		
+//	if(GM.getCurrentObj() != GM.FO.TempObj){ 
+//        if(GM.FO.GuideObj.gameObject.particleSystem.isStopped)
+//            GM.setGuideOption(true);
+//		GM.FO.GuideObj.transform.position = GM.getCurrentObj().transform.position + Vector3(0,-3,0);
+//	} else {
+//		//GM.FO.GuideObj.transform.position = Vector3(-1000,-1000,0);
+//        GM.setGuideOption(false);
+//	}
 	if(GM.getCurrentObj() != GM.FO.TempObj){ 
-        if(GM.FO.GuideObj.gameObject.particleSystem.isStopped)
-            GM.setGuideOption(true);
+		newOffset = Vector3(0,difference.y,0);
+		if(!GM.WO.rotateMode){
+			GM.getCurrentObj().transform.eulerAngles += newOffset;
+		}
+    	if(GM.FO.GuideObj.gameObject.particleSystem.isStopped) GM.setGuideOption(true);
 		GM.FO.GuideObj.transform.position = GM.getCurrentObj().transform.position + Vector3(0,-3,0);
-	} else {
-		//GM.FO.GuideObj.transform.position = Vector3(-1000,-1000,0);
-        GM.setGuideOption(false);
+		DoAbility();
+		} else {
+        	GM.setGuideOption(false);
 	}
-	
-	if(GM.getCurrentObj() != GM.FO.TempObj) DoAbility();
+	if(GM.WO.weaponMode != GM.WO.weaponMode.Rotating)
+		tempRotationSet = false;
 }
 
     
+//function DoAbility(){
+//    switch(GM.WO.weaponMode){
+//	    case GM.WO.weaponMode.Shooting:
+//	    	if(Input.GetMouseButton(1)){throwObj(); GM.resetPlayer();}
+//	        break;
+//	    case GM.WO.weaponMode.Rotating:
+//	        setRotation();
+//	        break;
+//	    case GM.WO.weaponMode.Scaling:
+//	        setScale();
+//	        if(Input.GetMouseButton(1)) GM.resetPlayer();          
+//	        break;
+//	    case GM.WO.weaponMode.Moving:
+//	        setPosition();
+//	        if(Input.GetMouseButton(1)) GM.resetPlayer();
+//	        break;
+//	    case GM.WO.weaponMode.Energizing:
+//	        setEnergize();
+//	        break;
+//	    case GM.WO.weaponMode.Snatching:
+//            GM.WO.rotateMode = false;
+//            if (GM.getCurrentObj() != GM.FO.TempObj)
+//                if(!GM.getCurrentObj().GetComponent(Mover).isHeld)
+//                    Snatch();
+//	        break;
+//	}
+//}
+
 function DoAbility(){
     switch(GM.WO.weaponMode){
 	    case GM.WO.weaponMode.Shooting:
@@ -30,14 +81,15 @@ function DoAbility(){
 	        break;
 	    case GM.WO.weaponMode.Rotating:
 	        setRotation();
+	        if(Input.GetKeyDown(KeyCode.Escape)) GM.resetPlayer();
 	        break;
 	    case GM.WO.weaponMode.Scaling:
 	        setScale();
-	        if(Input.GetMouseButton(1)) GM.resetPlayer();          
+	        if(Input.GetKeyDown(KeyCode.Escape)) GM.resetPlayer();         
 	        break;
 	    case GM.WO.weaponMode.Moving:
 	        setPosition();
-	        if(Input.GetMouseButton(1)) GM.resetPlayer();
+	        if(Input.GetKeyDown(KeyCode.Escape)) GM.resetPlayer();
 	        break;
 	    case GM.WO.weaponMode.Energizing:
 	        setEnergize();
@@ -58,60 +110,103 @@ function throwObj(){
     }
 }
 
-function setRotation(){       
+//function setRotation(){       
+//     if(Input.GetMouseButton(1)){
+//        GM.WO.rotateMode = true;
+//        var rotationX : float = MouseX * GM.WO.sensitivityX;
+//        var rotationY : float = MouseY * GM.WO.sensitivityY;
+//   
+// 
+//        switch(GM.WO.weaponModeLevel){
+//            case GM.WO.weaponModeLevel.X:
+//                //GM.getCurrentObj().transform.Rotate(GM.getCurrentObj().transform.right, -Mathf.Deg2Rad * rotationX);
+//                //GM.getCurrentObj().transform.Rotate(GM.WO.referenceCamera.right, -Mathf.Deg2Rad * rotationX);
+//                //GM.getCurrentObj().transform.eulerAngles =  Vector3(Mathf.LerpAngle(GM.getCurrentObj().transform.eulerAngles.x, GM.getCurrentObj().transform.eulerAngles.x * Time.deltaTime, .05), 0, 0);
+//                GM.getCurrentObj().transform.localRotation.x += -rotationX * -Mathf.Deg2Rad * .07;
+//                break;
+//            case GM.WO.weaponModeLevel.Y:
+//                //GM.getCurrentObj().transform.Rotate(GM.getCurrentObj().transform.up, -Mathf.Deg2Rad * rotationX);
+//                //GM.getCurrentObj().transform.Rotate(GM.WO.referenceCamera.up, -Mathf.Deg2Rad * rotationX);
+//                //GM.getCurrentObj().transform.eulerAngles =  Vector3(0, Mathf.LerpAngle(GM.getCurrentObj().transform.eulerAngles.y, GM.getCurrentObj().transform.eulerAngles.y * -rotationX, Time.deltaTime), 0);
+//                GM.getCurrentObj().transform.localRotation.y += -rotationX * -Mathf.Deg2Rad * .07;
+//                break;
+//            case GM.WO.weaponModeLevel.Z:
+//                //GM.getCurrentObj().transform.Rotate(GM.getCurrentObj().transform.forward, -Mathf.Deg2Rad * rotationX);
+//                //GM.getCurrentObj().transform.Rotate(GM.WO.referenceCamera.forward, -Mathf.Deg2Rad * rotationX);
+//                //GM.getCurrentObj().transform.eulerAngles =  Vector3(0,0,Mathf.LerpAngle(GM.getCurrentObj().transform.eulerAngles.z, GM.getCurrentObj().transform.eulerAngles.z * -rotationX, Time.deltaTime));
+//                GM.getCurrentObj().transform.localRotation.z += -rotationX * -Mathf.Deg2Rad * .07;
+//                break;
+//            case GM.WO.weaponModeLevel.Uniform:                
+//                /*GM.getCurrentObj().transform.eulerAngles =  Vector3(
+//                                                                    Mathf.LerpAngle(GM.getCurrentObj().transform.eulerAngles.x, GM.getCurrentObj().transform.eulerAngles.x + -rotationX, Time.deltaTime),
+//                                                                    Mathf.LerpAngle(GM.getCurrentObj().transform.eulerAngles.y, GM.getCurrentObj().transform.eulerAngles.y + -rotationX, Time.deltaTime),
+//                                                                    Mathf.LerpAngle(GM.getCurrentObj().transform.eulerAngles.z, GM.getCurrentObj().transform.eulerAngles.z + -rotationX, Time.deltaTime)
+//                                                            ); */
+//                //GM.getCurrentObj().transform.Rotate(GM.getCurrentObj().transform.up, -Mathf.Deg2Rad * rotationX);
+//                //GM.getCurrentObj().transform.Rotate(GM.getCurrentObj().transform.right,  Mathf.Deg2Rad * rotationY);
+//                GM.getCurrentObj().transform.Rotate(GM.WO.referenceCamera.up, -Mathf.Deg2Rad * rotationX);
+//                GM.getCurrentObj().transform.Rotate(GM.WO.referenceCamera.right,  Mathf.Deg2Rad * rotationY);
+//                break;
+//        }          
+//
+//		
+//		                 
+//        
+//    } else {
+//        GM.WO.rotateMode = false;       
+//    }
+//    
+//    if(Input.GetMouseButton(0)){
+//        GM.getCurrentObj().transform.localRotation = Quaternion.identity;
+//    } else {
+//        GM.getCurrentObj().rigidbody.freezeRotation = true;
+//    }
+//     
+//}
+
+function setRotation(){
+
+if(tempRotationSet == false){
+GM.getCurrentObj().transform.rotation = GM.FO.FPSCam.transform.rotation;
+tempRotationSet = true;
+}
+	if(Input.GetMouseButton(2)){       
+	GM.getCurrentObj().transform.rotation = GM.FO.FPSCam.transform.rotation;
+	}
      if(Input.GetMouseButton(1)){
         GM.WO.rotateMode = true;
-        var rotationX : float = MouseX * GM.WO.sensitivityX;
-        var rotationY : float = MouseY * GM.WO.sensitivityY;
-   
- 
-        switch(GM.WO.weaponModeLevel){
+   		
+   		switch(GM.WO.weaponModeLevel){
             case GM.WO.weaponModeLevel.X:
-                //GM.getCurrentObj().transform.Rotate(GM.getCurrentObj().transform.right, -Mathf.Deg2Rad * rotationX);
-                //GM.getCurrentObj().transform.Rotate(GM.WO.referenceCamera.right, -Mathf.Deg2Rad * rotationX);
-                //GM.getCurrentObj().transform.eulerAngles =  Vector3(Mathf.LerpAngle(GM.getCurrentObj().transform.eulerAngles.x, GM.getCurrentObj().transform.eulerAngles.x * Time.deltaTime, .05), 0, 0);
-                GM.getCurrentObj().transform.localRotation.x += -rotationX * -Mathf.Deg2Rad * .07;
+                GM.getCurrentObj().transform.Rotate(Vector3.up, -Mathf.Deg2Rad * 90);
                 break;
             case GM.WO.weaponModeLevel.Y:
-                //GM.getCurrentObj().transform.Rotate(GM.getCurrentObj().transform.up, -Mathf.Deg2Rad * rotationX);
-                //GM.getCurrentObj().transform.Rotate(GM.WO.referenceCamera.up, -Mathf.Deg2Rad * rotationX);
-                //GM.getCurrentObj().transform.eulerAngles =  Vector3(0, Mathf.LerpAngle(GM.getCurrentObj().transform.eulerAngles.y, GM.getCurrentObj().transform.eulerAngles.y * -rotationX, Time.deltaTime), 0);
-                GM.getCurrentObj().transform.localRotation.y += -rotationX * -Mathf.Deg2Rad * .07;
+                GM.getCurrentObj().transform.Rotate(Vector3.right, -Mathf.Deg2Rad * 90);
                 break;
             case GM.WO.weaponModeLevel.Z:
-                //GM.getCurrentObj().transform.Rotate(GM.getCurrentObj().transform.forward, -Mathf.Deg2Rad * rotationX);
-                //GM.getCurrentObj().transform.Rotate(GM.WO.referenceCamera.forward, -Mathf.Deg2Rad * rotationX);
-                //GM.getCurrentObj().transform.eulerAngles =  Vector3(0,0,Mathf.LerpAngle(GM.getCurrentObj().transform.eulerAngles.z, GM.getCurrentObj().transform.eulerAngles.z * -rotationX, Time.deltaTime));
-                GM.getCurrentObj().transform.localRotation.z += -rotationX * -Mathf.Deg2Rad * .07;
+                GM.getCurrentObj().transform.Rotate(Vector3.fwd, -Mathf.Deg2Rad * 90);
                 break;
-            case GM.WO.weaponModeLevel.Uniform:                
-                /*GM.getCurrentObj().transform.eulerAngles =  Vector3(
-                                                                    Mathf.LerpAngle(GM.getCurrentObj().transform.eulerAngles.x, GM.getCurrentObj().transform.eulerAngles.x + -rotationX, Time.deltaTime),
-                                                                    Mathf.LerpAngle(GM.getCurrentObj().transform.eulerAngles.y, GM.getCurrentObj().transform.eulerAngles.y + -rotationX, Time.deltaTime),
-                                                                    Mathf.LerpAngle(GM.getCurrentObj().transform.eulerAngles.z, GM.getCurrentObj().transform.eulerAngles.z + -rotationX, Time.deltaTime)
-                                                            ); */
-                //GM.getCurrentObj().transform.Rotate(GM.getCurrentObj().transform.up, -Mathf.Deg2Rad * rotationX);
-                //GM.getCurrentObj().transform.Rotate(GM.getCurrentObj().transform.right,  Mathf.Deg2Rad * rotationY);
-                GM.getCurrentObj().transform.Rotate(GM.WO.referenceCamera.up, -Mathf.Deg2Rad * rotationX);
-                GM.getCurrentObj().transform.Rotate(GM.WO.referenceCamera.right,  Mathf.Deg2Rad * rotationY);
-                break;
-        }          
-
-		
-		                 
+        }   
+    }
+    else if(Input.GetMouseButton(0)){
+        GM.WO.rotateMode = true;
         
-    } else {
+    	switch(GM.WO.weaponModeLevel){
+            case GM.WO.weaponModeLevel.X:
+                GM.getCurrentObj().transform.Rotate(-Vector3.up, -Mathf.Deg2Rad * 90);
+                break;
+            case GM.WO.weaponModeLevel.Y:
+                GM.getCurrentObj().transform.Rotate(-Vector3.right, -Mathf.Deg2Rad * 90);
+                break;
+            case GM.WO.weaponModeLevel.Z:
+                GM.getCurrentObj().transform.Rotate(-Vector3.fwd, -Mathf.Deg2Rad * 90);
+                break;
+    		}
+    }
+      else {
         GM.WO.rotateMode = false;       
     }
-    
-    if(Input.GetMouseButton(0)){
-        GM.getCurrentObj().transform.localRotation = Quaternion.identity;
-    } else {
-        GM.getCurrentObj().rigidbody.freezeRotation = true;
-    }
-     
 }
-
 function setScale(){ 
 
  	var scaleVector:Vector3;
