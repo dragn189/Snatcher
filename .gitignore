@@ -17,6 +17,7 @@ local.properties
 .loadpath
 # Changed to ignore entire directory
 Temp/*
+Library/metadata/*
 # External tool builders
 .externalToolBuilders/
 
