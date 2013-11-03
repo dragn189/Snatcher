@@ -20,7 +20,7 @@ Temp/*
 Library/metadata/*
 # External tool builders
 .externalToolBuilders/
-
+Library/ScriptAssemblies/*.txt
 
 
 # Locally stored "Eclipse launch configurations"
