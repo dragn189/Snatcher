@@ -15,7 +15,8 @@ local.properties
 .classpath
 .settings/
 .loadpath
-Temp/UnityLockfile
+# Changed to ignore entire directory
+Temp/*
 # External tool builders
 .externalToolBuilders/
 
@@ -42,7 +43,7 @@ Temp/UnityLockfile
 *.suo
 *.user
 *.sln.docstates
-# commit solution builds since they rebuild
+# do not commit solution builds since they rebuild
 # per machince anyway
 *.sln
 
