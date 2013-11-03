@@ -224,8 +224,12 @@ function getSnatchDistance():float{
 
 function setWeaponOption(option:String){
     switch(option){
-        case "tetherOn": WO.tetherBeam.particleEmitter.active = true; break;
-        case "tetherOff": WO.tetherBeam.particleEmitter.active = false; break;
+        case "tetherOn": 
+            //WO.tetherBeam.particleEmitter.active = true; break;
+            WO.tetherBeam.SetActive(true); break;
+        case "tetherOff": 
+            //WO.tetherBeam.particleEmitter.active = false; break;
+            WO.tetherBeam.SetActive(false); break;
         case "snatchingOn": WO.isSnatching = true; break;
         case "snatchingOff": WO.isSnatching = false; break;
     }
@@ -272,11 +276,13 @@ function getHolderPosition():Vector3{
 function resetPlayer(){
 	if(FO.CurrentObj != FO.TempObj){
 	  WO.scrollPosition = 0; //</=-=-=-=-=-=NOT BEING RESET!
+      WO.rotateMode = false;
 	  FO.CurrentObj.GetComponent(Mover).MO.isHeld = false; //Drop the object
 	  FO.CurrentObj.rigidbody.useGravity = true;//gravity on ??? is this needed?
 	  FO.CurrentObj.rigidbody.constraints = RigidbodyConstraints.None;
 	  //FO.CurrentObj.layer = 0;
 	  FO.CurrentObj = FO.TempObj;
 	  FO.TempObj.transform.position = FO.PermObj.transform.position;  
+      setWeaponOption("tetherOff");
 	}
 }

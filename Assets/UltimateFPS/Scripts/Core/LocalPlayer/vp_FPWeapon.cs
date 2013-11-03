@@ -1,4 +1,4 @@
-﻿/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 //
 //	vp_FPWeapon.cs
 //	© VisionPunk. All Rights Reserved.
@@ -509,8 +509,8 @@ public class vp_FPWeapon : vp_Component
 		float zoom = 1.0f - ((m_FinalZoomTime - Time.time) / RenderingZoomDamping);
 
 		if (m_WeaponCamera != null && vp_Utility.IsActive(m_WeaponCamera.gameObject))
-			m_WeaponCamera.camera.fov = Mathf.SmoothStep(m_WeaponCamera.gameObject.camera.fov,
-																	RenderingFieldOfView, zoom);
+			//m_WeaponCamera.camera.fov = Mathf.SmoothStep(m_WeaponCamera.gameObject.camera.fov, RenderingFieldOfView, zoom);
+			m_WeaponCamera.camera.fieldOfView = Mathf.SmoothStep(m_WeaponCamera.gameObject.camera.fieldOfView, RenderingFieldOfView, zoom);
 
 	}
 
@@ -532,8 +532,8 @@ public class vp_FPWeapon : vp_Component
 	{
 
 		if (m_WeaponCamera != null && vp_Utility.IsActive(m_WeaponCamera.gameObject))
-			m_WeaponCamera.camera.fov = RenderingFieldOfView;
-
+			//m_WeaponCamera.camera.fov = RenderingFieldOfView;
+			m_WeaponCamera.camera.fieldOfView = RenderingFieldOfView;
 	}
 
 

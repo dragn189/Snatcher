@@ -217,8 +217,10 @@ public class vp_Grab : vp_Interactable
 		m_CurrentRotationSway.y = 0;
 
 		Quaternion orig = m_Transform.localRotation;
-		m_Transform.RotateAround(m_Camera.transform.forward, m_CurrentRotationSway.z * -0.5f * Time.timeScale);
-		m_Transform.RotateAround(m_Camera.transform.right, m_CurrentRotationSway.x * -0.5f * Time.timeScale);
+		//m_Transform.RotateAround(m_Camera.transform.forward, m_CurrentRotationSway.z * -0.5f * Time.timeScale);
+		//m_Transform.RotateAround(m_Camera.transform.right, m_CurrentRotationSway.x * -0.5f * Time.timeScale);
+		m_Transform.Rotate(m_Camera.transform.forward, m_CurrentRotationSway.z * -0.5f * Time.timeScale);
+		m_Transform.Rotate(m_Camera.transform.right, m_CurrentRotationSway.x * -0.5f * Time.timeScale);
 		Quaternion newer = m_Transform.localRotation;
 		m_Transform.localRotation = orig;
 		m_Transform.localRotation = Quaternion.Slerp(newer, Quaternion.Euler(m_CurrentHoldAngle + (m_CurrentShake * 50)), (Time.deltaTime * (Stiffness * 60.0f)));

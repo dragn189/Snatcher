@@ -204,7 +204,8 @@ public class vp_FPCamera : vp_Component
 				weaponCam.depth = 1;
 				weaponCam.farClipPlane = 100;
 				weaponCam.nearClipPlane = 0.01f;
-				weaponCam.fov = 60;
+				//weaponCam.fov = 60;
+				weaponCam.fieldOfView = 60;
 				break;
 			}
 		}
@@ -550,7 +551,8 @@ public class vp_FPCamera : vp_Component
 
 		RenderingZoomDamping = Mathf.Max(RenderingZoomDamping, 0.01f);
 		float zoom = 1.0f - ((m_FinalZoomTime - Time.time) / RenderingZoomDamping);
-		gameObject.camera.fov = Mathf.SmoothStep(gameObject.camera.fov, RenderingFieldOfView, zoom);
+		//gameObject.camera.fov = Mathf.SmoothStep(gameObject.camera.fov, RenderingFieldOfView, zoom);
+		gameObject.camera.fieldOfView = Mathf.SmoothStep(gameObject.camera.fieldOfView, RenderingFieldOfView, zoom);
 
 	}
 
@@ -573,7 +575,8 @@ public class vp_FPCamera : vp_Component
 	public virtual void SnapZoom()
 	{
 
-		gameObject.camera.fov = RenderingFieldOfView;
+		//gameObject.camera.fov = RenderingFieldOfView;
+        gameObject.camera.fieldOfView = RenderingFieldOfView;
 
 	}
 

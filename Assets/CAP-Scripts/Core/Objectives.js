@@ -40,7 +40,7 @@ function Start(){
     
     //calcutate the total max points
     CalculatePointsSystem(false);
-    print(maxTotalPoints);
+    //print(maxTotalPoints);
 }
 
 function CalculatePointsSystem(addToTotal:boolean){
@@ -59,7 +59,7 @@ function CalculatePointsSystem(addToTotal:boolean){
 	        	if(obj.completed == true && obj.hasBeenAdded == false){
 	        		totalCompletedPoints += obj.pointAward;
 	        		obj.hasBeenAdded = true;
-	        		print(totalCompletedPoints);
+	        		//print(totalCompletedPoints);
 	        	}
 	        } else {
 	        	//inital start calculate the max total 

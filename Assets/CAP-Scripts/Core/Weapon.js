@@ -26,18 +26,18 @@ function Update(){
 function DoAbility(){
     switch(GM.WO.weaponMode){
 	    case GM.WO.weaponMode.Shooting:
-	    	if(Input.GetMouseButton(1)){throwObj(); Reset();}
+	    	if(Input.GetMouseButton(1)){throwObj(); GM.resetPlayer();}
 	        break;
 	    case GM.WO.weaponMode.Rotating:
 	        setRotation();
 	        break;
 	    case GM.WO.weaponMode.Scaling:
 	        setScale();
-	        if(Input.GetMouseButton(1)) Reset();          
+	        if(Input.GetMouseButton(1)) GM.resetPlayer();          
 	        break;
 	    case GM.WO.weaponMode.Moving:
 	        setPosition();
-	        if(Input.GetMouseButton(1)) Reset();
+	        if(Input.GetMouseButton(1)) GM.resetPlayer();
 	        break;
 	    case GM.WO.weaponMode.Energizing:
 	        setEnergize();
@@ -181,10 +181,13 @@ function setEnergize(){
 
 function Snatch(){
     if(!GM.PO.isOnInteractiveObject && GM.getCurrentObj() != GM.FO.TempObj){
-      GM.WO.tetherBeam.particleEmitter.active = true;
+      //GM.WO.tetherBeam.particleEmitter.active = true;
+      GM.setWeaponOption("tetherOn");
       var origin:Vector3 = GM.getCurrentObj().transform.position;
       var target:Vector3 = GM.FO.TempObj.transform.position;
       var d:float = Vector3.Distance(origin, target);
+      
+      //[2:47:16 PM] Mike Bechtel: uhhh my skype is in russian.... :/
       
       GM.getCurrentObj().transform.position = Vector3.Lerp(origin, target, GM.WO.snatchSpeed);
      
@@ -200,17 +203,3 @@ function Snatch(){
       } 
     }
 }
-  
-function Reset(){
-	if(GM.getCurrentObj() != GM.FO.TempObj){
-	  GM.WO.scrollPosition = 0;
-	  GM.getMover().MO.isHeld = false; //Drop the object
-	  GM.getCurrentObj().rigidbody.constraints = RigidbodyConstraints.None;
-      GM.getCurrentObj().rigidbody.freezeRotation = false;
-	  GM.setCurrentObj(GM.FO.TempObj);
-	  GM.FO.TempObj.transform.position = GM.FO.PermObj.transform.position;  
-	}
-}   
-
-
-  

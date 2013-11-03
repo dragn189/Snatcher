@@ -50,7 +50,8 @@ public class vp_FootstepManager : MonoBehaviour
 			{
 				mIsDirty = false;
 				
-				m_FootstepManagers = GameObject.FindSceneObjectsOfType(typeof(vp_FootstepManager)) as vp_FootstepManager[];
+				//m_FootstepManagers = GameObject.FindSceneObjectsOfType(typeof(vp_FootstepManager)) as vp_FootstepManager[];
+				m_FootstepManagers = GameObject.FindObjectsOfType(typeof(vp_FootstepManager)) as vp_FootstepManager[];
 				
 				// Alternative method, considers prefabs:
 				if(m_FootstepManagers == null)

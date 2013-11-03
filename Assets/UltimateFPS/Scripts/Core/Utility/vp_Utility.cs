@@ -1,4 +1,4 @@
-﻿/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 //
 //	vp_Utility.cs
 //	© VisionPunk. All Rights Reserved.
@@ -198,7 +198,8 @@ public static class vp_Utility
 
 #else
 
-		obj.SetActiveRecursively(activate);
+		//obj.SetActiveRecursively(activate);
+		obj.SetActive(activate);
 
 #endif
 
@@ -217,7 +218,8 @@ public static class vp_Utility
 
 #else
 
-		return obj.active;
+		//return obj.active;
+        return obj.activeSelf;
 
 #endif
 

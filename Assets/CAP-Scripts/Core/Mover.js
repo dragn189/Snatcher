@@ -41,8 +41,7 @@ function Reset(){
       GM.resetPlayer();//Needs to be called something else due to the fact that we're not reseting the actual player
   }    	
 }
-
-
+    
 function useEnergy(value:float){
     if (MO.engergizeHealth >= 0 || MO.engergizeHealth <= MO.energyReset){
         MO.engergizeHealth += value;
