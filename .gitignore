@@ -17,7 +17,7 @@ local.properties
 .loadpath
 # Changed to ignore entire directory
 Temp/*
-Library/metadata/*
+# Library/metadata/*
 # External tool builders
 .externalToolBuilders/
 Library/ScriptAssemblies/*.txt
