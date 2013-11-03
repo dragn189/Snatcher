@@ -19,6 +19,8 @@ Temp/UnityLockfile
 # External tool builders
 .externalToolBuilders/
 
+
+
 # Locally stored "Eclipse launch configurations"
 *.launch
 
@@ -40,6 +42,9 @@ Temp/UnityLockfile
 *.suo
 *.user
 *.sln.docstates
+# commit solution builds since they rebuild
+# per machince anyway
+*.sln
 
 # Build results
 
