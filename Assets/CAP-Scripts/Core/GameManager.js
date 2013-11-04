@@ -25,10 +25,10 @@ class WeaponOptions extends System.Object{
 	var snatchDistance:float = 20.0;
     @Range(0.0, 100.0)
     var maxPositionDistance: float = 10;
-    @Range(0.0, 250.0)
-    var throwDistance:float = 250.0; // 1:250 ratio on objects mass = 1, 250 meters    
-    @Range(0.0, 100.0)
-    var throwHeight:float = 100.0;   // 1:60 ratio on objects mass = 1, 250 meters    
+    @Range(0.0, 1000.0)
+    var throwDistance:float = 1000.0; // 1:250 ratio on objects mass = 1, 250 meters    
+    @Range(0.0, 400.0)
+    var throwHeight:float = 400.0;   // 1:60 ratio on objects mass = 1, 250 meters    
 	enum Action {
 		Snatching,	
 		Shooting,

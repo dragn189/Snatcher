@@ -126,11 +126,10 @@ function DoAbility(){
 	        break;
 	}
 }
-
 function throwObj(){
 	if(GM.getCurrentObj() != GM.FO.TempObj){
     	GM.getCurrentObj().rigidbody.constraints = RigidbodyConstraints.None;
-    	GM.getCurrentObj().rigidbody.AddForce(GM.FO.FPSCam.transform.forward * GM.WO.throwDistance + (GM.FO.FPSCam.transform.up * GM.WO.throwHeight));
+    	GM.getCurrentObj().rigidbody.AddForce(GM.FO.FPSCam.transform.forward * GM.WO.throwDistance  * GM.getCurrentObj().rigidbody.mass + (GM.FO.FPSCam.transform.up * GM.WO.throwHeight * GM.getCurrentObj().rigidbody.mass));
     }
 }
 
