@@ -1,11 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CAP-Scripts\Core\Crosshair.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CAP-Scripts\Core\Weapon.js">
     <Files>
-      <File FileName="Assets\CAP-Scripts\Core\GameManager.js" Line="181" Column="2" />
-      <File FileName="Assets\CAP-Scripts\Core\Unlocks.js" Line="2" Column="20" />
-      <File FileName="Assets\CAP-Scripts\Core\Weapon.js" Line="69" Column="3" />
-      <File FileName="Assets\CAP-Scripts\Core\Crosshair.js" Line="9" Column="30" />
+      <File FileName="Assets\CAP-Scripts\Core\Weapon.js" Line="277" Column="134" />
+      <File FileName="Assets\CAP-Scripts\Core\GameManager.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

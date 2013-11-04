@@ -255,7 +255,40 @@ function setScale(){
 	else if (GM.WO.modeDirection == -1){
 	  	GM.getCurrentObj().transform.localScale -= scaleVector;
 	  }
-		//GM.FO.TempObj.transform.position += GM.FPSCam.transform.forward * GM.WO.currentScale;
+	  var distanceToPlayer : float = 0.0;
+	  var staticDistance : float = 0.0;
+	  var biggestScale : float = 0.0;
+
+	  
+	  distanceToPlayer = Vector3.Distance(GM.getCurrentObj().transform.position, GM.FO.CamControl.transform.position);
+	  staticDistance = Vector3.Distance(GM.FO.PermObj.transform.position, GM.FO.CamControl.transform.position); 
+	  
+	  if(GM.getCurrentObj().transform.localScale.x > GM.getCurrentObj().transform.localScale.y)
+	  biggestScale = GM.getCurrentObj().transform.localScale.x;
+	  else
+	  biggestScale = GM.getCurrentObj().transform.localScale.y;
+	  if(biggestScale < GM.getCurrentObj().transform.localScale.z)
+	  biggestScale = GM.getCurrentObj().transform.localScale.z;
+	  
+	  
+	  	switch(GM.WO.weaponModeLevel){
+        case GM.WO.weaponModeLevel.X:
+        	if(distanceToPlayer < staticDistance + (biggestScale - 1))
+        	GM.FO.TempObj.transform.position = GM.FO.PermObj.transform.position + (GM.FO.FPSCam.transform.forward * (biggestScale - 1));
+			break;
+		case GM.WO.weaponModeLevel.Y:
+			GM.FO.TempObj.transform.position = GM.FO.PermObj.transform.position + (GM.FO.FPSCam.transform.forward * (biggestScale - 1));
+            break;
+        case GM.WO.weaponModeLevel.Z:
+        	GM.FO.TempObj.transform.position = GM.FO.PermObj.transform.position + (GM.FO.FPSCam.transform.forward * (biggestScale - 1));
+            break;
+        case GM.WO.weaponModeLevel.Uniform:
+        	GM.FO.TempObj.transform.position = GM.FO.PermObj.transform.position + (GM.FO.FPSCam.transform.forward * (biggestScale - 1));
+            break;
+    }
+	//print(distanceToPlayer);  
+	  
+
 	
    	//GM.WO.currentScale = GM.WO.modeDirection * GM.WO.modifyRate * Time.deltaTime; 
   	
