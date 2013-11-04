@@ -9,7 +9,10 @@ var newRotation : Vector3 = Vector3.zero;
 var difference : Vector3 = Vector3.zero;
 var newOffset : Vector3 = Vector3.zero;
 
+var beamColors : Material[] = new Material[6];
+
 var tempRotationSet : boolean = false;
+
 function Start () {
 currentRotation = GM.FO.FPSCam.transform.eulerAngles;
 newRotation = currentRotation;
@@ -43,6 +46,27 @@ function Update(){
 	}
 	if(GM.WO.weaponMode != GM.WO.weaponMode.Rotating)
 		tempRotationSet = false;
+		
+	switch(GM.WO.weaponMode){
+		case GM.WO.weaponMode.Shooting:
+		    GM.WO.tetherBeam.GetComponent(ParticleRenderer).material = beamColors[0];
+		    break;
+		case GM.WO.weaponMode.Rotating:
+	    	GM.WO.tetherBeam.GetComponent(ParticleRenderer).material = beamColors[1];
+	        break;
+	    case GM.WO.weaponMode.Scaling:
+	    	GM.WO.tetherBeam.GetComponent(ParticleRenderer).material = beamColors[2];  
+	        break;
+	    case GM.WO.weaponMode.Moving:
+	    	GM.WO.tetherBeam.GetComponent(ParticleRenderer).material = beamColors[3];
+	        break;
+	    case GM.WO.weaponMode.Energizing:
+	    	GM.WO.tetherBeam.GetComponent(ParticleRenderer).material = beamColors[4];
+	        break;
+	    case GM.WO.weaponMode.Snatching:
+	    	GM.WO.tetherBeam.GetComponent(ParticleRenderer).material = beamColors[5];
+	        break;
+	}
 }
 
     

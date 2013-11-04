@@ -51,6 +51,7 @@
      <Compile Include="Assets\CAP-Scripts\Core\Mover.js" />
      <Compile Include="Assets\CAP-Scripts\Core\Objectives.js" />
      <Compile Include="Assets\CAP-Scripts\Core\Player.js" />
+     <Compile Include="Assets\CAP-Scripts\Core\Unlocks.js" />
      <Compile Include="Assets\CAP-Scripts\Core\Weapon.js" />
      <Compile Include="Assets\CAP-Scripts\Debug\Console.js" />
      <Compile Include="Assets\CAP-Scripts\Debug\DrawGizmo.js" />

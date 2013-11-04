@@ -110,6 +110,8 @@ var FO:FPSObjects;
 var IO:InteractiveObject[];
 var InteractiveObjects:ArrayList = new ArrayList();
 var DisruptableObjects:ArrayList = new ArrayList();
+//new var that corresponds with unlock script
+var abilitiesUnlocked : int;
 
 function Start () { 
     InteractiveObjects.Add("Triggerer");
@@ -159,13 +161,13 @@ function updateWeaponMode(){
 		}
 			if(Input.GetKeyDown(KeyCode.Alpha1))
 				WO.weaponMode = WO.weaponMode.Shooting;  
-			else if(Input.GetKeyDown(KeyCode.Alpha2))
+			else if(Input.GetKeyDown(KeyCode.Alpha2) && abilitiesUnlocked >=2)
 				WO.weaponMode = WO.weaponMode.Rotating;  
-			else if(Input.GetKeyDown(KeyCode.Alpha3))
+			else if(Input.GetKeyDown(KeyCode.Alpha3) && abilitiesUnlocked >=3)
 				WO.weaponMode = WO.weaponMode.Scaling;  
-			else if(Input.GetKeyDown(KeyCode.Alpha4))
+			else if(Input.GetKeyDown(KeyCode.Alpha4) && abilitiesUnlocked >=4)
 				WO.weaponMode = WO.weaponMode.Moving;  
-			else if(Input.GetKeyDown(KeyCode.Alpha5))
+			else if(Input.GetKeyDown(KeyCode.Alpha5) && abilitiesUnlocked ==5)
 				WO.weaponMode = WO.weaponMode.Energizing;
 			else if(Input.GetKeyDown(KeyCode.Tab)){
 	  			WO.weaponModeLevel+=1;
@@ -177,6 +179,31 @@ function updateWeaponMode(){
 	 	WO.weaponMode = WO.weaponMode.Snatching;  
 	 }
 }
+//function updateWeaponMode(){
+//	if(FO.CurrentObj != FO.TempObj && FO.CurrentObj.GetComponent(Mover).MO.isHeld){
+//		if(WO.weaponMode == WO.weaponMode.Snatching){
+//			WO.weaponMode = WO.weaponMode.Shooting; 
+//		}
+//			if(Input.GetKeyDown(KeyCode.Alpha1))
+//				WO.weaponMode = WO.weaponMode.Shooting;  
+//			else if(Input.GetKeyDown(KeyCode.Alpha2))
+//				WO.weaponMode = WO.weaponMode.Rotating;  
+//			else if(Input.GetKeyDown(KeyCode.Alpha3))
+//				WO.weaponMode = WO.weaponMode.Scaling;  
+//			else if(Input.GetKeyDown(KeyCode.Alpha4))
+//				WO.weaponMode = WO.weaponMode.Moving;  
+//			else if(Input.GetKeyDown(KeyCode.Alpha5))
+//				WO.weaponMode = WO.weaponMode.Energizing;
+//			else if(Input.GetKeyDown(KeyCode.Tab)){
+//	  			WO.weaponModeLevel+=1;
+//	  			if(WO.weaponModeLevel==4){
+//	  				WO.weaponModeLevel = 0;
+//	  			}
+//	  		}
+//	 } else {
+//	 	WO.weaponMode = WO.weaponMode.Snatching;  
+//	 }
+//}
 
 function OnTopOfBox(){   
     if( Vector3.Distance(FO.CamControl.transform.position, FO.CurrentObj.transform.postion) >= WO.pickUpRange[0] &&
