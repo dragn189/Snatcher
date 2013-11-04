@@ -19,7 +19,7 @@ function Update(){
 	MouseX = Input.GetAxis("Mouse X"); MouseY = Input.GetAxis("Mouse Y");
 	currentRotation = GM.FO.FPSCam.transform.eulerAngles;
 	difference = currentRotation - newRotation;
-	print(difference);
+	//print(difference);
 	newRotation = currentRotation;
 		
 //	if(GM.getCurrentObj() != GM.FO.TempObj){ 
@@ -178,13 +178,13 @@ tempRotationSet = true;
    		
    		switch(GM.WO.weaponModeLevel){
             case GM.WO.weaponModeLevel.X:
-                GM.getCurrentObj().transform.Rotate(Vector3.up, -Mathf.Deg2Rad * 90);
-                break;
-            case GM.WO.weaponModeLevel.Y:
                 GM.getCurrentObj().transform.Rotate(Vector3.right, -Mathf.Deg2Rad * 90);
                 break;
+            case GM.WO.weaponModeLevel.Y:
+                GM.getCurrentObj().transform.Rotate(Vector3.up, -Mathf.Deg2Rad * 90);
+                break;
             case GM.WO.weaponModeLevel.Z:
-                GM.getCurrentObj().transform.Rotate(Vector3.fwd, -Mathf.Deg2Rad * 90);
+                GM.getCurrentObj().transform.Rotate(Vector3.forward, -Mathf.Deg2Rad * 90);
                 break;
         }   
     }
@@ -193,13 +193,13 @@ tempRotationSet = true;
         
     	switch(GM.WO.weaponModeLevel){
             case GM.WO.weaponModeLevel.X:
-                GM.getCurrentObj().transform.Rotate(-Vector3.up, -Mathf.Deg2Rad * 90);
-                break;
-            case GM.WO.weaponModeLevel.Y:
                 GM.getCurrentObj().transform.Rotate(-Vector3.right, -Mathf.Deg2Rad * 90);
                 break;
+            case GM.WO.weaponModeLevel.Y:
+                GM.getCurrentObj().transform.Rotate(-Vector3.up, -Mathf.Deg2Rad * 90);
+                break;
             case GM.WO.weaponModeLevel.Z:
-                GM.getCurrentObj().transform.Rotate(-Vector3.fwd, -Mathf.Deg2Rad * 90);
+                GM.getCurrentObj().transform.Rotate(-Vector3.forward, -Mathf.Deg2Rad * 90);
                 break;
     		}
     }
