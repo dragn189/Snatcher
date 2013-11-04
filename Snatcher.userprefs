@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CAP-Scripts\Core\GameManager.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CAP-Scripts\Core\Weapon.js">
     <Files>
-      <File FileName="Assets\CAP-Scripts\Core\Weapon.js" Line="132" Column="133" />
+      <File FileName="Assets\CAP-Scripts\Core\Weapon.js" Line="345" Column="1" />
       <File FileName="Assets\CAP-Scripts\Core\GameManager.js" Line="30" Column="20" />
+      <File FileName="Assets\CAP-Scripts\Core\Mover.js" Line="26" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

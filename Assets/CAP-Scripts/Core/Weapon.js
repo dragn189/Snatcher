@@ -337,20 +337,18 @@ function Snatch(){
       var origin:Vector3 = GM.getCurrentObj().transform.position;
       var target:Vector3 = GM.FO.TempObj.transform.position;
       var d:float = Vector3.Distance(origin, target);
-      
+      GM.getCurrentObj().rigidbody.constraints = RigidbodyConstraints.FreezePosition;
+      GM.getCurrentObj().rigidbody.freezeRotation = true;
       //[2:47:16 PM] Mike Bechtel: uhhh my skype is in russian.... :/
-      
-      GM.getCurrentObj().transform.position = Vector3.Lerp(origin, target, GM.WO.snatchSpeed);
-     
-      if(d >= 1/d){
-          GM.getCurrentObj().transform.position.y += .15;
-      } else {
-          GM.getCurrentObj().transform.position.y -= .15;   
-      }   
-         
+      GM.getCurrentObj().transform.position = Vector3.Slerp(origin, target, GM.WO.snatchSpeed);
+//     
+//      if(d >= 1/d){
+//          GM.getCurrentObj().transform.position.y += .15;
+//      } else {
+//          GM.getCurrentObj().transform.position.y -= .15;   
+//      }   
       if(d <= 1.5){
           GM.getCurrentObj().GetComponent(Mover).MO.isHeld = true;
-          GM.getCurrentObj().GetComponent(Mover).MO.isSnatching = false;//is the needed?
       } 
     }
 }
