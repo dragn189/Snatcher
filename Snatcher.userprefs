@@ -1,6 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CAP-Scripts\Core\Unlocks.js">
+    <Files>
+      <File FileName="Assets\CAP-Scripts\Core\Unlocks.js" Line="41" Column="18" />
+      <File FileName="Assets\CAP-Scripts\Core\GameManager.js" Line="176" Column="20" />
+      <File FileName="Assets\CAP-Scripts\Core\Crosshair.js" Line="15" Column="20" />
+      <File FileName="Assets\Sources\trail.js" Line="60" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

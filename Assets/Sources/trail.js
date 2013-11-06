@@ -14,17 +14,20 @@ private var particles : Particle[];
 	
 var GM:GameManager;
 	
-	function Start()
-	{
-		oneOverZigs = 1f / zigs; //converted to float?
-		particleEmitter.emit = false;
+function Start()
+{
+	oneOverZigs = 1f / zigs; //converted to float?
+	particleEmitter.emit = false;
 
-		particleEmitter.Emit(zigs);
-		particles = particleEmitter.particles;
-	}
-	
-	function Update ()
-	{
+	particleEmitter.Emit(zigs);
+	particles = particleEmitter.particles;
+}
+
+function Update ()
+{
+
+}
+function LateUpdate(){
 		target = GM.FO.CurrentObj.transform;
 		if (noise == null)
 			noise = new Perlin();
@@ -55,4 +58,5 @@ var GM:GameManager;
 			if (endLight)
 				endLight.transform.position = particles[particles.Length - 1].position;
 		}
-	}	
+}
+	

@@ -13,7 +13,6 @@ var WO:WeaponOptions;
 
 
 function Start () {
-    GM = GameObject.Find("GameManager").GetComponent(GameManager);
     WO = GM.WO;
 
 }
