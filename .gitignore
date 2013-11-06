@@ -21,7 +21,7 @@ Temp/*
 # External tool builders
 .externalToolBuilders/
 Library/ScriptAssemblies/*.txt
-UltimateFPS/*
+Assets/UltimateFPS/*
 
 
 # Locally stored "Eclipse launch configurations"
