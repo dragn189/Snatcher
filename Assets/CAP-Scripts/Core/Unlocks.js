@@ -1,7 +1,7 @@
 ﻿#pragma strict
 public var GM:GameManager;
 var unlockAllGunModes : boolean = false;
-
+//github test
 function Start () {
 }
 
